@@ -18,16 +18,16 @@ namespace INV.API.Controllers
         }
 
         [HttpPost("AddRole")]
-        public Task<ResponseDTO> AddRole(RoleEntity roleDTO)
+        public Task<ResponseDTO> AddRole(UserRole role)
         {
             try
             {
-                _roleService.Insert(roleDTO);
+                _roleService.Insert(role);
                 return Task.FromResult(new ResponseDTO
                 {
                     Success = true,
                     Message = "Data inserted"
-                }); ;
+                });
             }
             catch (Exception ex)
             {
@@ -35,8 +35,8 @@ namespace INV.API.Controllers
                 return Task.FromResult(new ResponseDTO
                 {
                     Success = true,
-                    Message = ex.Message
-                }); ;
+                    Message = ex.GetBaseException().Message
+                });
             }
         }
 

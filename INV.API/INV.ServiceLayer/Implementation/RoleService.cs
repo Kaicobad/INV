@@ -11,38 +11,38 @@ namespace INV.ServiceLayer.Implementation
 {
     public class RoleService : IRoleService
     {
-        private readonly IRepositoryService<RoleEntity> _repository;
+        private readonly IRepositoryService<UserRole> _roleRepository;
 
-        public RoleService(IRepositoryService<RoleEntity> repository)
+        public RoleService(IRepositoryService<UserRole> repository)
         {
-            _repository = repository;
+            _roleRepository = repository;
         }
-        public void Delete(RoleEntity roles)
+        public void Delete(UserRole roles)
         {
-            _repository.Delete(roles);
-            _repository.SaveChanges();
-        }
-
-        public async Task<RoleEntity> Get(int id)
-        {
-            return await _repository.Get(id);
+            _roleRepository.Delete(roles);
+            _roleRepository.SaveChanges();
         }
 
-        public async Task<IEnumerable<RoleEntity>> GetAlRoles()
+        public async Task<UserRole> Get(int id)
         {
-            return await _repository.GetAll();
+            return await _roleRepository.Get(id);
         }
 
-        public void Insert(RoleEntity roles)
+        public async Task<IEnumerable<UserRole>> GetAlRoles()
         {
-            _repository.Insert(roles);
-            _repository.SaveChanges();
+            return await _roleRepository.GetAll();
         }
 
-        public void Update(RoleEntity roles)
+        public void Insert(UserRole roles)
         {
-            _repository.Update(roles);
-            _repository.SaveChanges();
+            _roleRepository.Insert(roles);
+            _roleRepository.SaveChanges();
+        }
+
+        public void Update(UserRole roles)
+        {
+            _roleRepository.Update(roles);
+            _roleRepository.SaveChanges();
         }
     }
 }

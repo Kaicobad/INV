@@ -9,10 +9,10 @@ namespace INV.ServiceLayer.Interfaces
 {
     public interface IRoleService
     {
-        Task<IEnumerable<RoleEntity>> GetAlRoles();
-        Task<RoleEntity> Get(int id);
-        void Insert(RoleEntity roles);
-        void Update(RoleEntity roles);
-        void Delete(RoleEntity roles);
+        Task<IEnumerable<UserRole>> GetAlRoles();
+        Task<UserRole> Get(int id);
+        void Insert(UserRole roles);
+        void Update(UserRole roles);
+        void Delete(UserRole roles);
     }
 }

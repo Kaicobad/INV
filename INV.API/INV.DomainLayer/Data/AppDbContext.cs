@@ -15,8 +15,12 @@ namespace INV.DomainLayer.Data
             
         }
 
-        public virtual void OnModelCreating(ModelBuilder modelBuilder) => base.OnModelCreating(modelBuilder);
+        public virtual void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
 
-        DbSet<UserEntity> Users { get; set; }
+        DbSet<UserRole> UserRole { get; set; }
+        DbSet<UserModel> User { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace INV.API.DTO
+﻿namespace INV.API.DTO.Role
 {
     public class RoleDTO
     {
