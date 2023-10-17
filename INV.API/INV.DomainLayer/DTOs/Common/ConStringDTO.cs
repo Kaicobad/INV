@@ -8,6 +8,6 @@ namespace INV.DomainLayer.DTOs.Common
 {
     public class ConStringDTO
     {
-        public static string INVConnectionString = "Server=Kaicobad;Database=InventoryDB;Trusted_Connection=True;TrustServerCertificate=True;";
+        public static string INVConnectionString = "Server=.;Database=InventoryDB;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 }

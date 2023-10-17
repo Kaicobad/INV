@@ -10,7 +10,7 @@ namespace INV.RepositoryLayer.Repository
 {
     public interface IRepositoryService<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetAll();
+        Task<List<T>> GetAll();
         Task<T> Get(int id);
         void Insert(T entity);
         void Update(T entity);

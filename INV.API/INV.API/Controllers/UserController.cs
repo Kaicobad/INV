@@ -24,11 +24,12 @@ namespace INV.API.Controllers
             _mapper = mapper;
         }
         [HttpPost("AddUser")]
-        public Task<ResponseDTO> AddUser(UserModel user)
+        public Task<ResponseDTO> AddUser(UserDTO user)
         {
             try
             {
-                _userService.AddUser(user);
+                var userData = _mapper.Map<UserModel>(user);
+                _userService.AddUser(userData);
                 return Task.FromResult(new ResponseDTO
                 {
                     Success = true,
@@ -50,14 +51,14 @@ namespace INV.API.Controllers
         {
             try
             {
-                var users = Task.FromResult( await _userService.GetAllUser());
- 
-                //var t = await Task.FromResult(users);
+                var users =  await _userService.GetAllUser();
+
+                //var mp = users.Select(user => _mapper.Map<UserDTO>(user)).ToList();
                 return new UserResponseDto
                 {
                     Success = true,
                     Message = "All Users",
-                    Users = users 
+                    Users = users
                 };
             }
             catch (Exception ex)

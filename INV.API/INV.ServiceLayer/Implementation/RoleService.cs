@@ -28,7 +28,7 @@ namespace INV.ServiceLayer.Implementation
             return await _roleRepository.Get(id);
         }
 
-        public async Task<IEnumerable<UserRole>> GetAlRoles()
+        public async Task<List<UserRole>> GetAlRoles()
         {
             return await _roleRepository.GetAll();
         }

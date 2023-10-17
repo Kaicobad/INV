@@ -39,7 +39,7 @@ namespace INV.RepositoryLayer.Repository
 
         }
 
-        public async Task<IEnumerable<T>> GetAll()
+        public async Task<List<T>> GetAll()
         {
             return await entities.ToListAsync(); 
         }

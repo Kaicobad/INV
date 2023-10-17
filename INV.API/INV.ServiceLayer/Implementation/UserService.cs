@@ -26,7 +26,7 @@ namespace INV.ServiceLayer.Implementation
             _userRepository.SaveChanges();
         }
 
-        public Task<IEnumerable<UserModel>> GetAllUser()
+        public Task<List<UserModel>> GetAllUser()
         {
             var users = _userRepository.GetAll();
             return users;

@@ -12,6 +12,6 @@ namespace INV.ServiceLayer.Interfaces
     public interface IUserService
     {
         public void AddUser(UserModel user);
-        public Task<IEnumerable<UserModel>> GetAllUser();
+        public Task<List<UserModel>> GetAllUser();
     }
 }
