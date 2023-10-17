@@ -1,4 +1,5 @@
-﻿using INV.API.DTO;
+﻿using AutoMapper;
+using INV.API.DTO;
 using INV.DomainLayer.Models;
 using INV.ServiceLayer.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -11,10 +12,12 @@ namespace INV.API.Controllers
     public class RoleController : ControllerBase
     {
         private readonly IRoleService _roleService;
+        private readonly IMapper _mapper;
 
-        public RoleController(IRoleService roleService)
+        public RoleController(IRoleService roleService, IMapper mapper)
         {
             _roleService = roleService;
+            _mapper = mapper;
         }
 
         [HttpPost("AddRole")]

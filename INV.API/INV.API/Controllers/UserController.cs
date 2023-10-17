@@ -1,4 +1,5 @@
-﻿using INV.API.DTO;
+﻿using AutoMapper;
+using INV.API.DTO;
 using INV.DomainLayer.DTOs.User;
 using INV.DomainLayer.Models;
 using INV.ServiceLayer.Implementation;
@@ -15,10 +16,12 @@ namespace INV.API.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
         [HttpPost("AddUser")]
         public Task<ResponseDTO> AddUser(UserModel user)
@@ -48,6 +51,7 @@ namespace INV.API.Controllers
             try
             {
                 var users = Task.FromResult( await _userService.GetAllUser());
+ 
                 //var t = await Task.FromResult(users);
                 return new UserResponseDto
                 {

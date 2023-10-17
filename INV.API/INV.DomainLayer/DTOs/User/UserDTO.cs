@@ -8,10 +8,10 @@ namespace INV.DomainLayer.DTOs.User
 {
     public class UserDTO
     {
-        public string Name { get; set; }
-        public string Emial { get; set; }
-        public string Address { get; set; }
-        public string ContactNumber { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public string Emial { get; set; } = string.Empty;
+        public string Address { get; set; } = string.Empty;
+        public string ContactNumber { get; set; } = string.Empty;
         public int UserId { get; set; }
         public int RoleId { get; set; }
         public bool IsActive { get; set; }
