@@ -6,8 +6,11 @@ using INV.ServiceLayer.Implementation;
 using INV.ServiceLayer.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.Collections.Immutable;
 using System.Data;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace INV.API.Controllers
 {
@@ -28,6 +31,8 @@ namespace INV.API.Controllers
         {
             try
             {
+                //CreatePasswordHash(user.Password, out byte[] PasswordHash, out byte[] PasswordSalt);
+                
                 var userData = _mapper.Map<UserModel>(user);
                 _userService.AddUser(userData);
                 return Task.FromResult(new ResponseDTO
@@ -44,6 +49,15 @@ namespace INV.API.Controllers
                     Success = true,
                     Message = ex.GetBaseException().Message
                 });
+            }
+        }
+        //Helper
+        private void CreatePasswordHash(string Password, out byte[] PasswordHash, out byte[] PasswordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                PasswordSalt = hmac.Key;
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password));
             }
         }
         [HttpGet("GetAll")]
@@ -72,4 +86,6 @@ namespace INV.API.Controllers
             }
         }
     }
+
+    
 }

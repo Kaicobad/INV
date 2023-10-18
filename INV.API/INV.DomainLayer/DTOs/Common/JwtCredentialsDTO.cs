@@ -8,6 +8,7 @@ namespace INV.DomainLayer.DTOs.Common
 {
     public class JwtCredentialsDTO
     {
-        public static string Issuer { get; set; } = "";
+        public string Key { get; set; } = "YourSecretKeyForAuthenticationOfApplication";
+        public string Issuer { get; set; } = "youtCompanyIssuer.com";
     }
 }
