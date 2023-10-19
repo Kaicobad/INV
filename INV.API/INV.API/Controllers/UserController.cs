@@ -62,8 +62,9 @@ namespace INV.API.Controllers
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password));
             }
         }
-        [Authorize]
+       
         [HttpGet("GetAll")]
+        [Authorize]
         public async Task<UserResponseDto> AllUsers()
         {
             try

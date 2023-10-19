@@ -28,9 +28,10 @@ namespace INV.API.Controllers
         {
             var JWTtoken = string.Empty;
             var dbUsers = await _userService.GetUserByName(user.Name);
+            var Roles = await _roleService.GetAlRoles();
             if (dbUsers != null) 
             {
-                JWTtoken = _tokenService.GetJwtToken(dbUsers);
+                JWTtoken = _tokenService.GetJwtToken(dbUsers, Roles);
             }
             return Ok(new
             {

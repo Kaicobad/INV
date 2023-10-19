@@ -10,6 +10,6 @@ namespace INV.ServiceLayer.JwtService
 {
     public interface IJwtTokenService
     {
-        string GetJwtToken(UserModel user);
+        string GetJwtToken(UserModel user, List<UserRole> Roles);
     }
 }

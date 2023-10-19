@@ -40,12 +40,11 @@ builder.Services.AddAuthentication(options =>
 
 }).AddJwtBearer(options =>
 {
-    JwtCredentialsDTO jwtCredentialsDTO = new JwtCredentialsDTO();
-    //var Issuer = builder.Configuration.GetSection("AppSettings:Issuer").Get<string>();
-    //var Key = builder.Configuration.GetSection("AppSettings:Key").Get<string>();
-    //var Issuer = Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Issuer"]);
+    //var JwtSettings = builder.Configuration.GetSection("AppSettings");
     var Key = Encoding.UTF8.GetBytes(builder.Configuration["AppSettings:Key"]);
 
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = false,

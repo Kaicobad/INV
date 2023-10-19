@@ -17,15 +17,20 @@ namespace INV.ServiceLayer.JwtService
         {
             _configuration = configuration;
         }
-        public string GetJwtToken(UserModel user)
+        public string GetJwtToken(UserModel user, List<UserRole> Roles)
         {
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.Name, user.Name)
             };
+            foreach (UserRole role in Roles)
+            {
+                new Claim(ClaimTypes.Role, role.Name);
+            }
             var key = Encoding.UTF8.GetBytes(_configuration["AppSettings:key"]);
             var creds = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
 
-            var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken
+                (
                     claims: claims,
                     expires: DateTime.Now.AddDays(1),
                     signingCredentials: creds
