@@ -38,12 +38,17 @@ namespace INV.RepositoryLayer.Repository
             return data;
 
         }
+        public async Task<T> GetByName(string Name)
+        {
+            var data = await entities.SingleOrDefaultAsync(x => x.Name == Name);
+            return data;
+        }
+
 
         public async Task<List<T>> GetAll()
         {
             return await entities.ToListAsync(); 
         }
-
         public void Insert(T entity)
         {
             if (entity == null)

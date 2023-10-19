@@ -1,4 +1,5 @@
 ﻿using INV.DomainLayer.DTOs.User;
+using INV.DomainLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace INV.ServiceLayer.JwtService
 {
     public interface IJwtTokenService
     {
-        string GetJwtToken(UserDTO user);
+        string GetJwtToken(UserModel user);
     }
 }

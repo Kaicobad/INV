@@ -31,5 +31,12 @@ namespace INV.ServiceLayer.Implementation
             var users = _userRepository.GetAll();
             return users;
         }
+
+        public Task<UserModel> GetUserByName(string Name)
+        {
+            var userByName = _userRepository.GetByName(Name);
+
+            return userByName;
+        }
     }
 }

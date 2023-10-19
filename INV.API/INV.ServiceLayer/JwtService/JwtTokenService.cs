@@ -4,6 +4,8 @@ using System.Text;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
 using System.IdentityModel.Tokens.Jwt;
+using INV.DomainLayer.DTOs.Common;
+using INV.DomainLayer.Models;
 
 namespace INV.ServiceLayer.JwtService
 {
@@ -15,18 +17,13 @@ namespace INV.ServiceLayer.JwtService
         {
             _configuration = configuration;
         }
-        public string GetJwtToken(UserDTO user)
+        public string GetJwtToken(UserModel user)
         {
             List<Claim> claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, user.Name),
-                new Claim(ClaimTypes.Role, "Admin"),
-                new Claim(ClaimTypes.Role, "User")
+                new Claim(ClaimTypes.Name, user.Name)
             };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
-                _configuration.GetSection("AppSettings:Token").Value!));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+            var key = Encoding.UTF8.GetBytes(_configuration["AppSettings:key"]);
+            var creds = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature);
 
             var token = new JwtSecurityToken(
                     claims: claims,

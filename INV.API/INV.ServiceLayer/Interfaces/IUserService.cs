@@ -13,5 +13,6 @@ namespace INV.ServiceLayer.Interfaces
     {
         public void AddUser(UserModel user);
         public Task<List<UserModel>> GetAllUser();
+        public Task<UserModel> GetUserByName(string Name);
     }
 }

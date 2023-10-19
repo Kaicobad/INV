@@ -4,6 +4,7 @@ using INV.DomainLayer.DTOs.User;
 using INV.DomainLayer.Models;
 using INV.ServiceLayer.Implementation;
 using INV.ServiceLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
@@ -26,6 +27,7 @@ namespace INV.API.Controllers
             _userService = userService;
             _mapper = mapper;
         }
+        
         [HttpPost("AddUser")]
         public Task<ResponseDTO> AddUser(UserDTO user)
         {
@@ -60,6 +62,7 @@ namespace INV.API.Controllers
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(Password));
             }
         }
+        [Authorize]
         [HttpGet("GetAll")]
         public async Task<UserResponseDto> AllUsers()
         {
@@ -86,6 +89,4 @@ namespace INV.API.Controllers
             }
         }
     }
-
-    
 }

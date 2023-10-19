@@ -12,6 +12,7 @@ namespace INV.RepositoryLayer.Repository
     {
         Task<List<T>> GetAll();
         Task<T> Get(int id);
+        Task<T> GetByName(string Name);
         void Insert(T entity);
         void Update(T entity);
         void Delete(T entity);
